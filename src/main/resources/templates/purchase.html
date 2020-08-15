@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <title>Покупки</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="js/purchase.js"></script>
+
+    </head>
+    <body ng-app="purchase" ng-controller="PurchaseController">
+
+        <h1>Покупки</h1>
+
+        <div ng-controller="getPurchase" ng-show="purchaseList.length > 0">
+            <table id="purchaseTable">
+                <thead>
+                    <tr>
+                        <th>ИД</th>
+                        <th>Количество</th>
+                        <th>Название</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="purchases in purchaseList" id="{{purchase.id}}">
+                        <td>{{purchase.id}}</td>
+                        <td>{{purchase.quantity}}</td>
+                        <td>{{purchase.name}}</td>
+                        <td><input type="button" value="Удалить" ng-click="delete(purchase.id)"/></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form role="form" ng-submit="addPurchase()">
+                <div>
+                    <label>Количество</label>
+                    <div>
+                        <input type="text" name="quantity" ng-model="number" />
+                    </div>
+                </div>
+                <div >
+                    <label >Название</label>
+                    <div>
+                        <input type="text" name="name" ng-model="name" />
+                    </div>
+                </div>	
+                <div>								
+                    <div>
+                        <input type="submit" value="Добавить"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
